@@ -40,8 +40,6 @@ testem.log
 *.tsbuildinfo
 Thumbs.db
 
-.nx/cache
-
 .yarn/*
 !.yarn/cache
 !.yarn/patches
