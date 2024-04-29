@@ -1,7 +1,11 @@
-import React from "react";
+import { forwardRef } from "react";
 import * as _ from "./style";
 import { ButtonProps } from "./type";
 
-export function Button({color, ...props}: ButtonProps) {
-  return <_.Wrapper {...props}>example</_.Wrapper>;
-}
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function ({ buttonColor, ...props }, ref) {
+  return (
+    <_.StyledButton buttonColor={buttonColor} {...props} ref={ref}>
+      example
+    </_.StyledButton>
+  );
+});

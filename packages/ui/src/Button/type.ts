@@ -1,3 +1,5 @@
 export type ButtonProps = {
-  color?: "red" | "yellow" | "green";
+  buttonColor: ButtonColorType;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
+
+export type ButtonColorType = "green" | "gray";
