@@ -1,5 +1,7 @@
 import React from "react"
 
 export type InputProps = {
-  color?: "red" | "yellow" | "green";
+  label?: string;
+  helpMessage?: string;
+  isInvalid?: boolean;
 } & React.InputHTMLAttributes<HTMLInputElement>
