@@ -1,7 +1,8 @@
+import { forwardRef } from "react";
 import * as _ from "./style";
 import { InputProps } from "./type";
 
-export function Input({ label, helpMessage, isInvalid = false, width, ...props }: InputProps) {
+export const Input = forwardRef(function ({ label, helpMessage, isInvalid = false, width, ...props }: InputProps) {
   return (
     <_.StyledWrapper style={{ width }}>
       <_.StyledLabel>
@@ -11,4 +12,4 @@ export function Input({ label, helpMessage, isInvalid = false, width, ...props }
       <_.StyledHelpMessage isInvalid={isInvalid}>{helpMessage}</_.StyledHelpMessage>
     </_.StyledWrapper>
   );
-}
+});
