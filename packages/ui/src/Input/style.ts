@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: auto;
+  width: 100%;
 `;
 
 export const StyledLabel = styled.label`
@@ -37,6 +37,5 @@ export const StyledInput = styled.input<{ isInvalid: boolean }>`
 export const StyledHelpMessage = styled.span<{ isInvalid: boolean }>`
   color: ${({ isInvalid }) => (isInvalid ? "#F20D0D" : "rgba(22, 22, 22, 0.5)")};
   font-size: 12px;
-  text-align: end;
   line-height: 24px;
 `;
