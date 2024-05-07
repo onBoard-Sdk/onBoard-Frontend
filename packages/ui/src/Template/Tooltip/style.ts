@@ -31,11 +31,10 @@ export const StyledExplanation = styled.div`
   line-height: 24px;
 `;
 
-export const StyledImage = styled.img<{ image: string }>`
+export const StyledImage = styled.img`
   border-radius: 8px;
   border: 1px solid var(--Black-10, rgba(34, 34, 34, 0.1));
   background: url(<path-to-image>) lightgray 50% / cover no-repeat;
-  display: ${({ image }) => (image !== "" ? "block" : "none")};
 `;
 
 export const StyledButtonWrapper = styled.div`

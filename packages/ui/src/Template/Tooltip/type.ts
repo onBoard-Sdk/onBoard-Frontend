@@ -6,6 +6,6 @@ export type TooltipProps = {
   explanation: string;
   image?: string;
   count?: string;
-  prev?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  next?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onPrevStep?: React.MouseEventHandler<HTMLButtonElement>;
+  onNextStep?: React.MouseEventHandler<HTMLButtonElement>;
 };
