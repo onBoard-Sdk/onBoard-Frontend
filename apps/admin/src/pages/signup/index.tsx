@@ -1,24 +1,44 @@
-import IntroduceImage from "@/assets/introduce.png";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { Button, Input } from "@onboard/ui";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { useCheckEmailVerify, useSendEmailVerify } from "@/apis/auth";
+import { useSignup } from "@/apis/teams";
+import { airplaneImage, checkImage, introduceImage } from "@/assets";
 
 interface SignupForm {
   email: string;
-  verifyEmail: string;
+  authCode: string;
   password: string;
 }
 
 const Signup = () => {
   const {
+    watch,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<SignupForm>();
 
+  const [isVerifiedEmail, setIsVerifiedEmail] = useState(true);
+
+  const { mutate: sendEmailVerifyMutate } = useSendEmailVerify({ email: watch("email") });
+  const { mutate: checkEmailVerifyMutate } = useCheckEmailVerify({
+    email: watch("email"),
+    authCode: watch("authCode"),
+    options: {
+      onSuccess: () => setIsVerifiedEmail(false),
+      onError: (e) => {
+        alert("인증에 실패하였습니다."), console.log(e);
+      },
+    },
+  });
+  const { mutate: signupMutate } = useSignup();
+
   const onSubmit: SubmitHandler<SignupForm> = (data) => {
-    console.log(data);
+    const { authCode, ...props } = data;
+    return signupMutate({ name: "initial", ...props });
   };
 
   return (
@@ -40,23 +60,25 @@ const Signup = () => {
               isInvalid={!!errors.email?.message}
               helpMessage={errors.email?.message}
             />
-            <Button buttonColor="green" type="button">
+            <Button buttonColor="green" type="button" onClick={() => sendEmailVerifyMutate()}>
+              <img src={airplaneImage} alt="airplaneImage" />
               인증
             </Button>
           </Wrapper>
           <Wrapper>
             <Input
               label="이메일 인증  번호"
-              {...register("verifyEmail")}
-              placeholder={"example@domain.net"}
+              {...register("authCode")}
               isInvalid={!!errors.email?.message}
               helpMessage={"입력한 이메일로 전송된 인증 번호를 입력하세요"}
             />
-            <Button buttonColor="green" type="button">
+            <Button buttonColor="green" type="button" onClick={() => checkEmailVerifyMutate()}>
+              <img src={checkImage} alt="checkImage" />
               확인
             </Button>
           </Wrapper>
           <Input
+            type="password"
             label="비밀번호"
             {...register("password", {
               pattern: {
@@ -68,7 +90,7 @@ const Signup = () => {
             isInvalid={!!errors.password?.message}
             helpMessage={"8자 이상, 숫자, 영문, 특수기호를 모두 포함해야 합니다"}
           />
-          <Button buttonColor="green" type="submit">
+          <Button buttonColor="green" type="submit" disabled={isVerifiedEmail}>
             계정 만들기
           </Button>
           <Link to="/">

@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
-import IntroduceImage from "@/assets/introduce.png";
-import LogoImage from "@/assets/logo.svg";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Button, Input } from "@onboard/ui";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useLogin } from "@/apis/auth/useLogin";
+import { introduceImage, leftArrow, logoImage } from "@/assets";
 
 interface LoginForm {
   email: string;
@@ -17,14 +17,16 @@ const Login = () => {
     formState: { errors },
   } = useForm<LoginForm>();
 
+  const { mutate: loginMutate } = useLogin();
+
   const onSubmit: SubmitHandler<LoginForm> = (data) => {
-    console.log(data);
+    return loginMutate(data);
   };
 
   return (
     <Container>
       <Left>
-        <Logo src={LogoImage} />
+        <Logo src={logoImage} />
         <Text>로그인</Text>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Input
