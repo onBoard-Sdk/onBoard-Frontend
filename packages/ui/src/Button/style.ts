@@ -40,7 +40,10 @@ const colorGenerator: Record<ButtonColorType, ButtonColorGeneratorType> = {
 
 export const StyledButton = styled.button<{ buttonColor: ButtonColorType }>`
   cursor: pointer;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
   outline: none;
   border: none;
   border-radius: 8px;

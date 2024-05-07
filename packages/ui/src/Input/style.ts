@@ -38,4 +38,5 @@ export const StyledHelpMessage = styled.span<{ isInvalid: boolean }>`
   color: ${({ isInvalid }) => (isInvalid ? "#F20D0D" : "rgba(22, 22, 22, 0.5)")};
   font-size: 12px;
   line-height: 24px;
+  text-align: end;
 `;

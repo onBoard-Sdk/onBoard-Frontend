@@ -41,6 +41,7 @@ const Login = () => {
             helpMessage={errors.email?.message}
           />
           <Input
+            type="password"
             label="비밀번호"
             {...register("password", {
               pattern: {
@@ -57,12 +58,13 @@ const Login = () => {
           </Button>
           <Link to="/signup">
             <Button buttonColor="gray" style={{ width: "100%" }}>
+              <img src={leftArrow} alt="leftArrow" />
               계정 만들기
             </Button>
           </Link>
         </Form>
       </Left>
-      <Right src={IntroduceImage} />
+      <Right src={introduceImage} />
     </Container>
   );
 };

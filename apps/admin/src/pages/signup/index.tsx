@@ -78,7 +78,7 @@ const Signup = () => {
           </Link>
         </Form>
       </Left>
-      <Right src={IntroduceImage} />
+      <Right src={introduceImage} />
     </Container>
   );
 };
