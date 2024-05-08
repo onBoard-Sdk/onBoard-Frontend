@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 import { Button, Input } from "@onboard/ui";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useLogin } from "@/apis/auth/useLogin";
+import { useLogin } from "@/apis/auth";
 import { leftArrow, logoImage } from "@/assets";
 import MainSection from "@/components/main";
 

@@ -2,7 +2,7 @@ import { teamsRouter } from ".";
 import { instance } from "../axios";
 import { useMutation } from "@tanstack/react-query";
 
-export type signupType = {
+export type SignupType = {
   email: string;
   password: string;
   name?: string;
@@ -11,7 +11,7 @@ export type signupType = {
 
 export const useSignup = () => {
   return useMutation({
-    mutationFn: (props: signupType) => instance.post(`${teamsRouter}/sign-up`, props),
+    mutationFn: (props: SignupType) => instance.post(`${teamsRouter}/sign-up`, props),
     onSuccess: () => (window.location.href = "http://localhost:3000"),
   });
 };
