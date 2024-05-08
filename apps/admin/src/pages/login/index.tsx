@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { Button, Input } from "@onboard/ui";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useLogin } from "@/apis/auth/useLogin";
-import { introduceImage, leftArrow, logoImage } from "@/assets";
+import { leftArrow, logoImage } from "@/assets";
+import MainSection from "@/components/main";
 
 interface LoginForm {
   email: string;
@@ -24,11 +25,11 @@ const Login = () => {
   };
 
   return (
-    <Container>
-      <Left>
-        <Logo src={logoImage} />
-        <Text>로그인</Text>
-        <Form onSubmit={handleSubmit(onSubmit)}>
+    <StyledContainer>
+      <StyledLeft>
+        <StyledLogo src={logoImage} />
+        <StyledText>로그인</StyledText>
+        <StyledForm onSubmit={handleSubmit(onSubmit)}>
           <Input
             label="이메일"
             {...register("email", {
@@ -64,16 +65,16 @@ const Login = () => {
               계정 만들기
             </Button>
           </Link>
-        </Form>
-      </Left>
-      <Right src={introduceImage} />
-    </Container>
+        </StyledForm>
+      </StyledLeft>
+      <MainSection />
+    </StyledContainer>
   );
 };
 
 export default Login;
 
-const Container = styled.main`
+const StyledContainer = styled.main`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
@@ -84,7 +85,7 @@ const Container = styled.main`
   background-color: #fff;
 `;
 
-const Left = styled.aside`
+const StyledLeft = styled.aside`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -101,22 +102,17 @@ const Left = styled.aside`
   background: linear-gradient(180deg, color(display-p3 1 1 1) 0%, color(display-p3 0.955 0.985 0.9634) 100%);
 `;
 
-const Right = styled.img`
-  width: 100%;
-  height: 100%;
-`;
-
-const Logo = styled.img`
+const StyledLogo = styled.img`
   width: 10rem;
 `;
 
-const Text = styled.p`
+const StyledText = styled.p`
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 36px;
 `;
 
-const Form = styled.form`
+const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 12px;

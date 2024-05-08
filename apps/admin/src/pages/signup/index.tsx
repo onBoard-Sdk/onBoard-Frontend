@@ -5,7 +5,8 @@ import { Button, Input } from "@onboard/ui";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useCheckEmailVerify, useSendEmailVerify } from "@/apis/auth";
 import { useSignup } from "@/apis/teams";
-import { airplaneImage, checkImage, introduceImage } from "@/assets";
+import { airplaneImage, checkImage } from "@/assets";
+import MainSection from "@/components/main";
 
 interface SignupForm {
   email: string;
@@ -42,11 +43,11 @@ const Signup = () => {
   };
 
   return (
-    <Container>
-      <Left>
-        <Text>새 계정 생성</Text>
-        <Form onSubmit={handleSubmit(onSubmit)}>
-          <Wrapper>
+    <StyledContainer>
+      <StyledLeft>
+        <StyledText>새 계정 생성</StyledText>
+        <StyledForm onSubmit={handleSubmit(onSubmit)}>
+          <StyledWrapper>
             <Input
               label="이메일"
               {...register("email", {
@@ -64,8 +65,8 @@ const Signup = () => {
               <img src={airplaneImage} alt="airplaneImage" />
               인증
             </Button>
-          </Wrapper>
-          <Wrapper>
+          </StyledWrapper>
+          <StyledWrapper>
             <Input
               label="이메일 인증  번호"
               {...register("authCode")}
@@ -76,7 +77,7 @@ const Signup = () => {
               <img src={checkImage} alt="checkImage" />
               확인
             </Button>
-          </Wrapper>
+          </StyledWrapper>
           <Input
             type="password"
             label="비밀번호"
@@ -98,16 +99,16 @@ const Signup = () => {
               로그인
             </Button>
           </Link>
-        </Form>
-      </Left>
-      <Right src={introduceImage} />
-    </Container>
+        </StyledForm>
+      </StyledLeft>
+      <MainSection />
+    </StyledContainer>
   );
 };
 
 export default Signup;
 
-const Container = styled.main`
+const StyledContainer = styled.main`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
@@ -118,7 +119,7 @@ const Container = styled.main`
   background-color: #fff;
 `;
 
-const Left = styled.aside`
+const StyledLeft = styled.aside`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -135,24 +136,19 @@ const Left = styled.aside`
   background: linear-gradient(180deg, color(display-p3 1 1 1) 0%, color(display-p3 0.955 0.985 0.9634) 100%);
 `;
 
-const Right = styled.img`
-  width: 100%;
-  height: 100%;
-`;
-
-const Wrapper = styled.div`
+const StyledWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
 `;
 
-const Text = styled.p`
+const StyledText = styled.p`
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 36px;
 `;
 
-const Form = styled.form`
+const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 12px;
