@@ -97,9 +97,7 @@ const StyledLeft = styled.aside`
   border-radius: 16px;
   padding: 32px 16px;
   border: 1px solid var(--Black-10, rgba(34, 34, 34, 0.1));
-  border: 1px solid var(--Black-10, color(display-p3 0.1333 0.1333 0.1333 / 0.1));
   background: linear-gradient(180deg, #fff 0%, #f2fbf5 100%);
-  background: linear-gradient(180deg, color(display-p3 1 1 1) 0%, color(display-p3 0.955 0.985 0.9634) 100%);
 `;
 
 const StyledLogo = styled.img`
