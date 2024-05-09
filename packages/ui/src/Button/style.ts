@@ -40,12 +40,17 @@ const colorGenerator: Record<ButtonColorType, ButtonColorGeneratorType> = {
 
 export const StyledButton = styled.button<{ buttonColor: ButtonColorType }>`
   cursor: pointer;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
   outline: none;
   border: none;
   border-radius: 8px;
-  padding: 8px 16px;
+  padding: 8.5px 16px;
   color: black;
+  font-size: 16px;
+  white-space: nowrap;
   ${({ buttonColor }) => colorGenerator[buttonColor]["normal"]}
   &:hover:enabled {
     ${({ buttonColor }) => colorGenerator[buttonColor]["hover"]}

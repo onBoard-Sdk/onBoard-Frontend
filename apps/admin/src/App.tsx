@@ -1,9 +1,7 @@
-import { Button, ButtonProps } from "@onboard/ui";
+import { Router } from "./router";
 
 function App() {
-  return (
-      <Button />
-  );
+  return <Router />;
 }
 
 export default App;
