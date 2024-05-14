@@ -17,7 +17,7 @@ export const useLogin = () => {
   return useMutation({
     mutationFn: (props: LoginRequestType) => instance.post(`${authRouter}/sign-in`, props),
     onSuccess: (e) => {
-      // window.location.href = "http://localhost:3000";
+      window.location.href = "http://localhost:3000/service";
       console.log(e.data);
     },
   });

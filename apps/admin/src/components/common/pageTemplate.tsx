@@ -26,6 +26,7 @@ const StyledContainer = styled.div`
 const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 12px;
   width: 60%;
   min-width: 700px;
