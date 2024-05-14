@@ -1,7 +1,7 @@
 import { sampleServiceImage } from "@/assets";
 import styled from "@emotion/styled";
 
-const ServiceCard = () => {
+export const ServiceCard = () => {
   return (
     <StyledWrapper>
       <StyledImage src={sampleServiceImage} alt="sampleServiceImage" />
@@ -10,8 +10,6 @@ const ServiceCard = () => {
     </StyledWrapper>
   );
 };
-
-export default ServiceCard;
 
 const StyledWrapper = styled.div`
   display: flex;

@@ -1,18 +1,21 @@
-import { plusImage } from "@/assets";
-import PageTeplate from "@/components/common/pageTemplate";
-import ServiceCard from "@/components/service";
+import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { Button } from "@onboard/ui";
+import { plusImage } from "@/assets";
+import { ServiceCard } from "@/components/service";
+import PageTeplate from "@/components/common/pageTemplate";
 
-const ServicePage = () => {
+export const ServicePage = () => {
   return (
     <PageTeplate>
       <StyledTitleWrapper>
         <StyledTitle>등록한 서비스</StyledTitle>
-        <Button buttonColor="green">
-          <img src={plusImage} />
-          서비스 연결
-        </Button>
+        <Link to="new">
+          <Button buttonColor="green">
+            <img src={plusImage} />
+            서비스 연결
+          </Button>
+        </Link>
       </StyledTitleWrapper>
       <StyledCountText>2개</StyledCountText>
       <StyledServiceCardWrapper>
@@ -24,8 +27,6 @@ const ServicePage = () => {
     </PageTeplate>
   );
 };
-
-export default ServicePage;
 
 const StyledTitleWrapper = styled.div`
   display: flex;

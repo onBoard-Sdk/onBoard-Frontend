@@ -19,7 +19,6 @@ const StyledContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100vw;
-  height: 100vh;
   padding-top: 100px;
 `;
 
@@ -30,5 +29,4 @@ const StyledWrapper = styled.div`
   gap: 12px;
   width: 60%;
   min-width: 700px;
-  height: 100%;
 `;

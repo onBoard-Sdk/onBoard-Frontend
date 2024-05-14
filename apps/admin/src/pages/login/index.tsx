@@ -79,7 +79,6 @@ const StyledContainer = styled.main`
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
   padding: 24px;
-  box-sizing: border-box;
   width: 100%;
   height: 100vh;
   background-color: #fff;
@@ -91,7 +90,6 @@ const StyledLeft = styled.aside`
   justify-content: center;
   align-items: center;
   gap: 16px;
-  box-sizing: border-box;
   width: 100%;
   height: 100%;
   border-radius: 16px;
