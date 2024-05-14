@@ -1,24 +1,29 @@
 import { authRouter } from ".";
 import { instance } from "../axios";
 import { useMutation, MutationOptions } from "@tanstack/react-query";
+import { customCookie } from "@/utils/customCookies";
 
-export type LoginRequestType = {
+export type TokenRequestType = {
   email: string;
   password: string;
   options?: MutationOptions;
 };
 
-export type LoginResponseType = {
-  access_token: string;
-  refresh_token: string;
+export type TokenResponseType = {
+  data: {
+    accessToken: string;
+    refreshToken: string;
+    accessTokenExpirationTime: string;
+    refreshTokenExpirationTime: string;
+  };
 };
 
 export const useLogin = () => {
   return useMutation({
-    mutationFn: (props: LoginRequestType) => instance.post(`${authRouter}/sign-in`, props),
-    onSuccess: (e) => {
-      window.location.href = "http://localhost:3000/service";
-      console.log(e.data);
+    mutationFn: (props: TokenRequestType) => instance.post<TokenResponseType>(`${authRouter}/sign-in`, props),
+    onSuccess: (res) => {
+      customCookie.set.token(res.data);
+      window.location.href = "/service";
     },
   });
 };
