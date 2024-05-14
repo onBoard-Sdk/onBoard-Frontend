@@ -7,6 +7,7 @@ import { useCheckEmailVerify, useSendEmailVerify } from "@/apis/auth";
 import { useSignup } from "@/apis/teams";
 import { airplaneImage, checkImage } from "@/assets";
 import MainSection from "@/components/main";
+import { leftArrow } from "@/assets";
 
 interface SignupForm {
   email: string;
@@ -96,6 +97,7 @@ const Signup = () => {
           </Button>
           <Link to="/">
             <Button buttonColor="gray" style={{ width: "100%" }}>
+              <img src={leftArrow} alt="leftArrow" />
               로그인
             </Button>
           </Link>

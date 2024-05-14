@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button, Input } from "@onboard/ui";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useLogin } from "@/apis/auth";
-import { leftArrow, logoImage } from "@/assets";
+import { logoImage } from "@/assets";
 import MainSection from "@/components/main";
 
 interface LoginForm {
@@ -61,7 +61,6 @@ const Login = () => {
           </Button>
           <Link to="/signup">
             <Button buttonColor="gray" style={{ width: "100%" }}>
-              <img src={leftArrow} alt="leftArrow" />
               계정 만들기
             </Button>
           </Link>
