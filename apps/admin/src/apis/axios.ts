@@ -2,7 +2,7 @@ import axios, { AxiosError } from "axios";
 import { customCookie } from "@/utils/customCookies";
 import { userReissueToken } from "./auth/userReissueToken";
 
-const apiVersion = "/api/v1";
+export const apiVersion = "/api/v1";
 
 export const instance = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL + apiVersion,
