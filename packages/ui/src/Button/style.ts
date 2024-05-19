@@ -36,6 +36,22 @@ const colorGenerator: Record<ButtonColorType, ButtonColorGeneratorType> = {
       backgroundColor: "#F1F1F1",
     }),
   },
+  white: {
+    normal: css({
+      color: "#909090",
+      fontWeight: "600",
+      border: "1px solid #e9e9e9",
+      backgroundColor: "#ffffff",
+    }),
+    hover: css({ backgroundColor: "#e9e9e9" }),
+    active: css({ backgroundColor: "#d8d8d8" }),
+    disabled: css({
+      border: "none",
+      boxShadow: "none",
+      color: "red",
+      backgroundColor: "#efefef",
+    }),
+  },
 } as const;
 
 export const StyledButton = styled.button<{ buttonColor: ButtonColorType }>`
