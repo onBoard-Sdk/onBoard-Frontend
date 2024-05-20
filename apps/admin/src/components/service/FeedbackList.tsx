@@ -5,9 +5,6 @@ export const FeedbackList = () => {
   return (
     <StyledListWrapper>
       <FeedBackCard />
-      <FeedBackCard />
-      <FeedBackCard />
-      <FeedBackCard />
     </StyledListWrapper>
   );
 };

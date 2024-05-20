@@ -5,12 +5,6 @@ export const GuildeList = () => {
   return (
     <StyledListWrapper>
       <GuideCard />
-      <GuideCard />
-      <GuideCard />
-      <GuideCard />
-      <GuideCard />
-      <GuideCard />
-      <GuideCard />
     </StyledListWrapper>
   );
 };

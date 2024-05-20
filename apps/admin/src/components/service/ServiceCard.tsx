@@ -1,12 +1,12 @@
-import { sampleServiceImage } from "@/assets";
 import styled from "@emotion/styled";
+import { ServiceType } from "@/apis/services/useGetServices";
 
-export const ServiceCard = () => {
+export const ServiceCard = ({ name, logoImageUrl, serviceUrl }: ServiceType) => {
   return (
     <StyledWrapper>
-      <StyledImage src={sampleServiceImage} alt="sampleServiceImage" />
-      <StyledServiceTitle>고깃집</StyledServiceTitle>
-      <StyledURL>go.git.zip</StyledURL>
+      <StyledImage src={logoImageUrl} alt="logo image" />
+      <StyledServiceTitle>{name}</StyledServiceTitle>
+      <StyledURL>{serviceUrl}</StyledURL>
     </StyledWrapper>
   );
 };
@@ -15,7 +15,6 @@ const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 18%;
   border: 1px solid #e9e9e9;
   border-radius: 4px;
   padding: 16px;
@@ -24,6 +23,9 @@ const StyledWrapper = styled.div`
 const StyledImage = styled.img`
   width: 64px;
   height: 64px;
+  border: 1px solid #dedede;
+  border-radius: 8px;
+  object-fit: cover;
 `;
 
 const StyledServiceTitle = styled.span`
@@ -33,8 +35,13 @@ const StyledServiceTitle = styled.span`
   font-weight: bold;
 `;
 
-const StyledURL = styled.span`
+const StyledURL = styled.div`
+  min-width: 170px;
   color: #909090;
   font-size: 16px;
   line-height: 24px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
 `;

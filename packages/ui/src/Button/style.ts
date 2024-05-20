@@ -13,7 +13,7 @@ const colorGenerator: Record<ButtonColorType, ButtonColorGeneratorType> = {
   green: {
     normal: css({
       fontWeight: "600",
-      border: "0.5px solid #349e52",
+      border: "1px solid #349e52",
       backgroundColor: "#40DE6C",
       boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.24), inset 0px 6px 8px -4px #86F9A6",
     }),

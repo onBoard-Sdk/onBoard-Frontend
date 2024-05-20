@@ -4,8 +4,10 @@ import { Button } from "@onboard/ui";
 import { plusImage } from "@/assets";
 import { ServiceCard } from "@/components/service";
 import PageTeplate from "@/components/common/pageTemplate";
+import { useGetServices } from "@/apis/services";
 
 export const ServicePage = () => {
+  const { data } = useGetServices();
   return (
     <PageTeplate>
       <StyledTitleWrapper>
@@ -17,12 +19,15 @@ export const ServicePage = () => {
           </Button>
         </Link>
       </StyledTitleWrapper>
-      <StyledCountText>2개</StyledCountText>
+      <StyledCountText>{data?.data.services.length}개</StyledCountText>
       <StyledServiceCardWrapper>
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
+        {data?.data.services.map((service, idx) => {
+          return (
+            <Link key={service.serviceUrl} to={`${idx}`}>
+              <ServiceCard {...service} />
+            </Link>
+          );
+        })}
       </StyledServiceCardWrapper>
     </PageTeplate>
   );
@@ -49,7 +54,7 @@ const StyledCountText = styled.span`
 
 const StyledServiceCardWrapper = styled.div`
   display: flex;
-  gap: 12px;
   flex-wrap: wrap;
+  gap: 12px;
   width: 100%;
 `;
