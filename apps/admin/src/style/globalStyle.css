@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
+
 html,
 body,
 div,
@@ -83,6 +85,7 @@ video {
   padding: 0;
   border: 0;
   font-size: 100%;
+  font-family: 'Pretendard', sans-serif;
   font: inherit;
   box-sizing: border-box;
   vertical-align: baseline;
