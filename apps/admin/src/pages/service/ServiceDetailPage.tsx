@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import styled from "@emotion/styled";
 import { Button } from "@onboard/ui";
@@ -11,10 +11,11 @@ import { FeedbackList, GuildeList } from "@/components/service";
 export const ServiceDetailPage = () => {
   const [tabMenu, setTabMenu] = useState(true);
   const navigate = useNavigate();
+  const locate = useLocation();
 
   const queryClient = useQueryClient();
   const serviceList = queryClient.getQueryData<GetServicesType>(["serviceList"]);
-  const serviceIdx = +window.location.pathname.split("/")[2];
+  const serviceIdx = +locate.pathname.split("/")[2];
   const serviceInfo = serviceList?.data.services[serviceIdx];
 
   const onClickNavButton = () => {

@@ -1,6 +1,7 @@
+import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
-import { instance } from "../axios";
 import { servicesRouter } from ".";
+import { instance } from "../axios";
 import { useFileUpload } from "../files";
 
 export type ServiceForm = {
@@ -10,6 +11,7 @@ export type ServiceForm = {
 };
 
 export const usePostService = () => {
+  const navigate = useNavigate();
   return useMutation({
     mutationFn: async (props: ServiceForm) => {
       const { logoImageUrl, ...rest } = props;
@@ -20,6 +22,6 @@ export const usePostService = () => {
       };
       return instance.post(`${servicesRouter}`, requestBody);
     },
-    onSuccess: () => (window.location.href = "/service"),
+    onSuccess: () => navigate("/service"),
   });
 };

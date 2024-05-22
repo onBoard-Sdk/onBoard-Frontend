@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
-import { instance } from "../axios";
 import { ServiceForm, servicesRouter } from ".";
+import { instance } from "../axios";
 import { useFileUpload } from "../files";
 
 export const usePatchService = (serviceId: number | undefined) => {
+  const navigate = useNavigate();
   return useMutation({
     mutationFn: async (props: ServiceForm) => {
       const { logoImageUrl, ...rest } = props;
@@ -17,6 +19,6 @@ export const usePatchService = (serviceId: number | undefined) => {
       } else requestBody = props;
       return instance.patch(`${servicesRouter}/${serviceId}`, requestBody);
     },
-    onSuccess: () => (window.location.href = "/service"),
+    onSuccess: () => navigate("/service"),
   });
 };

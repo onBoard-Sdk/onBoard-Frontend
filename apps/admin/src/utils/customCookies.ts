@@ -10,12 +10,8 @@ export const customCookie = {
   },
   set: {
     token: ({ data }: TokenResponseType) => {
-      const now = new Date();
-      const accessTokenExpires = new Date();
-      const refreshTokenExpires = new Date();
-
-      accessTokenExpires.setHours(now.getHours() + 1);
-      refreshTokenExpires.setDate(now.getDate() + 14);
+      const accessTokenExpires = new Date(data.accessTokenExpirationTime.replace("T", " "));
+      const refreshTokenExpires = new Date(data.refreshTokenExpirationTime.replace("T", " "));
 
       cookies.set("accessToken", data.accessToken, {
         path: "/",

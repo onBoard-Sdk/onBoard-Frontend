@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 import { logoImage } from "@/assets";
 import { Button } from "@onboard/ui";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Header() {
-  if (window.location.pathname === "/" || window.location.pathname === "/signup") {
+  const locate = useLocation();
+  if (locate.pathname === "/" || locate.pathname === "/signup") {
     return null;
   }
   return (

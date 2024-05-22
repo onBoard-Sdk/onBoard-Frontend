@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { Button, Input } from "@onboard/ui";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { GetServicesType, ServiceForm, useDeleteService, usePatchService, usePostService } from "@/apis/services";
 import PageTemplate from "@/components/common/pageTemplate";
 import { emptyImage, leftArrow, trashImage, uploadImage } from "@/assets";
@@ -11,10 +11,11 @@ import { useDidMountEffect } from "@/hooks/useDidMountEffect";
 
 export const AddServicePage = () => {
   const navigate = useNavigate();
+  const locate = useLocation();
 
   const queryClient = useQueryClient();
   const serviceList = queryClient.getQueryData<GetServicesType>(["serviceList"]);
-  const serviceIdx = +window.location.pathname.split("/")[2];
+  const serviceIdx = +locate.pathname.split("/")[2];
   const serviceInfo = serviceList?.data.services[serviceIdx];
   const hasService = !Number.isNaN(serviceIdx);
 
@@ -36,6 +37,7 @@ export const AddServicePage = () => {
   const selectedImage = watch("logoImageUrl");
   const { mutate: postServiceMutate } = usePostService();
   const { mutate: patchServiceMutate } = usePatchService(serviceInfo?.serviceId);
+  const { mutate: deletServiceMutate } = useDeleteService();
 
   const handleImage = () => {
     if (inputRef.current) inputRef.current.click();
@@ -110,7 +112,7 @@ export const AddServicePage = () => {
         </Button>
       </StyledForm>
       {hasService && (
-        <Button buttonColor="gray" onClick={() => useDeleteService(serviceInfo!.serviceId)}>
+        <Button buttonColor="gray" onClick={() => deletServiceMutate(serviceInfo!.serviceId)}>
           <img src={trashImage} alt="trashImage" /> 서비스 삭제
         </Button>
       )}
