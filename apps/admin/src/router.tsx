@@ -1,13 +1,20 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "@/pages/login";
-import Signup from "@/pages/signup";
+import Header from "./components/header";
+import LoginPage from "@/pages/login";
+import SignupPage from "@/pages/signup";
+import { ServicePage, AddServicePage, ServiceDetailPage } from "./pages/service";
 
 export function Router() {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/service" element={<ServicePage />} />
+        <Route path="/service/new" element={<AddServicePage />} />
+        <Route path="/service/:id" element={<ServiceDetailPage />} />
+        <Route path="/service/:id/edit" element={<AddServicePage />} />
       </Routes>
     </BrowserRouter>
   );
