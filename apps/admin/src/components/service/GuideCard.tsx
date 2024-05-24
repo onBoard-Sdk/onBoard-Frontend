@@ -1,4 +1,4 @@
-import { editImage } from "@/assets";
+import { editImage, pencilSquare } from "@/assets";
 import styled from "@emotion/styled";
 import { Button } from "@onboard/ui";
 
@@ -10,7 +10,7 @@ export const GuideCard = () => {
         <StyledURL>/url/suburl</StyledURL>
       </StyledDIV>
       <Button buttonColor="gray">
-        <img src={editImage} alt="editImage" />
+        <img src={pencilSquare} alt="editImage" />
         수정
       </Button>
     </StyledWrapper>

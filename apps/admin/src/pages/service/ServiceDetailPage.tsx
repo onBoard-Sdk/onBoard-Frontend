@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import styled from "@emotion/styled";
 import { Button } from "@onboard/ui";
-import { editImage, leftArrow, plusImage } from "@/assets";
+import { editImage, leftArrow, pencilSquare, plusImage } from "@/assets";
 import { GetServicesType } from "@/apis/services";
 import PageTemplate from "@/components/common/pageTemplate";
 import { FeedbackList, GuildeList } from "@/components/service";
@@ -34,7 +34,7 @@ export const ServiceDetailPage = () => {
           <StyledURL>{serviceInfo?.serviceUrl}</StyledURL>
         </StyledServiceInfo>
         <Button buttonColor="gray" onClick={() => navigate("edit")}>
-          <img src={editImage} alt="editImage" />
+          <img src={pencilSquare} alt="editImage" />
           수정
         </Button>
       </StyledPageHeader>
