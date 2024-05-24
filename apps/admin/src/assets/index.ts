@@ -5,3 +5,8 @@ export { default as leftArrow } from "./leftArrow.svg";
 export { default as pencilSquare } from "./pencil-square.svg";
 export { default as mainSection1Image } from "./mainSection1.png";
 export { default as mainSection2Image } from "./mainSection2.png";
+export { default as plusImage } from "./plus.svg";
+export { default as sampleServiceImage } from "./sampleService.png";
+export { default as emptyImage } from "./empty.png";
+export { default as trashImage } from "./trash.svg";
+export { default as uploadImage } from "./upload.svg";

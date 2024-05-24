@@ -2,7 +2,7 @@ import EditableInfo from "@/components/editor/editableInfo";
 import TemplateEditor from "@/components/editor/templateEditor";
 import styled from "@emotion/styled";
 
-export default function Editor(){
+export default function EditorPage(){
   return(
     <OuterContainer>
       <RootContainer>
