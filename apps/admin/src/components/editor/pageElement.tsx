@@ -6,9 +6,9 @@ interface pageElementType{
   selected?: boolean;
 }
 
-export default function PageElement({index, description, selected=false}:pageElementType){
+export default function PageElement({index, description, selected=false, ...props}:pageElementType){
   return(
-    <Container selected={selected}>
+    <Container selected={selected} {...props}>
       <Digit selected={selected}>{index}</Digit>
       {description}
     </Container>
