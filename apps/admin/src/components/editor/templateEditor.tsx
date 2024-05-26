@@ -1,30 +1,50 @@
 import { useState } from "react"
 import styled from "@emotion/styled"
-import { Button } from "@onboard/ui"
+import { Input, Button } from "@onboard/ui"
 import PageElement from "./pageElement"
+import { checkImage, tooltipPreviewImage } from "@/assets"
 
 const DemoData = ["내용은 마이드래곤 푸하하", "삼양라면"]
 
 export default function TemplateEditor(){
   const [selectedPage, setSelectedPage] = useState<number>(0);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
 
   return(
     <EditorContainer>
-      <FlowContainer>
-        <StyledText>페이지 {DemoData.length ? `${selectedPage}/${DemoData.length}` : "없음"}</StyledText>
-        <PageList>
-          <PageElement description="기본 상태" index={0} selected={selectedPage===0} onClick={()=>setSelectedPage(0)}/>
-          {DemoData.map((d,i)=>
-            <PageElement description={d} index={i+1} selected={selectedPage===i+1} onClick={()=>setSelectedPage(i+1)} />
-          )}
-        </PageList>
-        <Button buttonColor="gray">저장</Button>
-        <ButtonContainer>
-          <Button buttonColor="green">새 페이지</Button>
-          <Button buttonColor="green" disabled={selectedPage===0}>편집</Button>
-          <Button buttonColor="gray" disabled={selectedPage===0}>삭제</Button>
-        </ButtonContainer>
-      </FlowContainer>
+      {
+        isEditing ?
+        <FlowContainer>
+          <Button buttonColor="gray">취소</Button>
+          <Button buttonColor="green"><img src={checkImage}/>완료</Button>
+          <StyledTextTitle>툴팁</StyledTextTitle>
+          우측에서 추가할 템플릿이 웹사이트의 어떤 요소를 따르게 할지 선택하세요
+          <StyledImage src={tooltipPreviewImage}/>
+          <Input label="이모지(선택)"/>
+          <Input label="제목"/>
+          <Input label="내용"/>
+          <StyledTextLabel>이미지(선택)</StyledTextLabel>
+          <ButtonNonStrechContainer>
+            <Button buttonColor="green">이미지 업로드</Button>
+            <Button buttonColor="gray">삭제</Button>
+          </ButtonNonStrechContainer>
+        </FlowContainer> :
+        <FlowContainer>
+          <StyledTextSubtle>페이지 {DemoData.length ? `${selectedPage}/${DemoData.length}` : "없음"}</StyledTextSubtle>
+          <PageList>
+            <PageElement description="기본 상태" index={0} selected={selectedPage===0} onClick={()=>setSelectedPage(0)}/>
+            {DemoData.map((d,i)=>
+              <PageElement description={d} index={i+1} selected={selectedPage===i+1} onClick={()=>setSelectedPage(i+1)} />
+            )}
+          </PageList>
+          <Button buttonColor="gray">저장</Button>
+          <ButtonContainer>
+            <Button buttonColor="green">새 페이지</Button>
+            <Button buttonColor="green" disabled={selectedPage===0} onClick={()=> setIsEditing(true)}>편집</Button>
+            <Button buttonColor="gray" disabled={selectedPage===0}>삭제</Button>
+          </ButtonContainer>
+        </FlowContainer>
+      }
       <StyledIframe src="https://www.entrydsm.hs.kr"/>
     </EditorContainer>
   )
@@ -65,10 +85,23 @@ const PageList = styled.div`
   overflow: scroll;
 `
 
-const StyledText = styled.p`
+const StyledTextSubtle = styled.p`
   color: #22222280;
   font-size: 16px;
   font-weight: 400;
+`
+
+const StyledTextTitle = styled.p`
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.5;
+`
+
+const StyledTextLabel = styled.p`
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #222222BF;
 `
 
 const ButtonContainer = styled.div`
@@ -77,4 +110,14 @@ const ButtonContainer = styled.div`
   &>button{
     flex: 1;
   }
+`
+
+const ButtonNonStrechContainer = styled.div`
+  display: flex;
+  gap: 12px;
+`
+
+const StyledImage = styled.img`
+  border-radius: 8px;
+  width: 100%;
 `

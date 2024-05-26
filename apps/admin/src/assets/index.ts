@@ -10,3 +10,4 @@ export { default as sampleServiceImage } from "./sampleService.png";
 export { default as emptyImage } from "./empty.png";
 export { default as trashImage } from "./trash.svg";
 export { default as uploadImage } from "./upload.svg";
+export { default as tooltipPreviewImage } from "./tooltipPreviewImage.png"
