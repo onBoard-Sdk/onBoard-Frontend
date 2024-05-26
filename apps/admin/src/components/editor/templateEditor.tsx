@@ -3,6 +3,7 @@ import styled from "@emotion/styled"
 import { Input, Button } from "@onboard/ui"
 import PageElement from "./pageElement"
 import { checkImage, tooltipPreviewImage, uploadImage } from "@/assets"
+import { useForm } from "react-hook-form"
 
 const DemoData = ["내용은 마이드래곤 푸하하", "삼양라면"]
 
@@ -23,21 +24,34 @@ export default function TemplateEditor(){
 }
 
 const EditingSidebar = ({setIsEditing}:{setIsEditing:Dispatch<React.SetStateAction<boolean>>}) => {
+  const { register, formState: { errors } } = useForm()
+
   return (
     <FlowContainer>
       <Button buttonColor="gray" onClick={()=>setIsEditing(false)}>취소</Button>
-      <Button buttonColor="green"><img src={checkImage}/>완료</Button>
-      <StyledTextTitle>툴팁</StyledTextTitle>
-      우측에서 추가할 템플릿이 웹사이트의 어떤 요소를 따르게 할지 선택하세요
-      <StyledImage src={tooltipPreviewImage}/>
-      <Input label="이모지(선택)"/>
-      <Input label="제목"/>
-      <Input label="내용"/>
-      <StyledTextLabel>이미지(선택)</StyledTextLabel>
-      <ButtonNonStrechContainer>
-        <Button buttonColor="green"><img src={uploadImage}/>이미지 업로드</Button>
-        <Button buttonColor="gray">삭제</Button>
-      </ButtonNonStrechContainer>
+      <StyledForm>
+        <Button buttonColor="green" type="submit"><img src={checkImage}/>완료</Button>
+        <StyledTextTitle>툴팁</StyledTextTitle>
+        우측에서 추가할 템플릿이 웹사이트의 어떤 요소를 따르게 할지 선택하세요
+        <StyledImage src={tooltipPreviewImage}/>
+          <Input
+            label="이모지(선택)"
+            {...register("emoji", {
+              pattern: {
+                value: /\p{RGI_Emoji}/v,
+                message: "이모지만 입력할 수 있습니다"
+              }
+            })}
+            isInvalid={!!errors.path?.emoji}
+          />
+          <Input label="제목" {...register("title")}/>
+          <Input label="내용" {...register("body")}/>
+        <StyledTextLabel>이미지(선택)</StyledTextLabel>
+        <ButtonNonStrechContainer>
+          <Button buttonColor="green"><img src={uploadImage}/>이미지 업로드</Button>
+          <Button buttonColor="gray">삭제</Button>
+        </ButtonNonStrechContainer>
+      </StyledForm>
     </FlowContainer>
   );
 }
@@ -139,4 +153,10 @@ const ButtonNonStrechContainer = styled.div`
 const StyledImage = styled.img`
   border-radius: 8px;
   width: 100%;
+`
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 `
