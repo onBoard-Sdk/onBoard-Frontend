@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import styled from "@emotion/styled";
 import { Button } from "@onboard/ui";
-import { editImage, leftArrow, pencilSquare, plusImage } from "@/assets";
+import { leftArrow, pencilSquare, plusImage } from "@/assets";
 import { GetServicesType } from "@/apis/services";
 import PageTemplate from "@/components/common/pageTemplate";
 import { FeedbackList, GuildeList } from "@/components/service";
@@ -16,7 +16,7 @@ export const ServiceDetailPage = () => {
   const queryClient = useQueryClient();
   const serviceList = queryClient.getQueryData<GetServicesType>(["serviceList"]);
   const serviceIdx = +locate.pathname.split("/")[2];
-  const serviceInfo = serviceList?.data.services[serviceIdx];
+  const serviceInfo = serviceList?.data.services.find((element) => element.serviceId === +serviceIdx);
 
   const onClickNavButton = () => {
     setTabMenu((prev) => !prev);

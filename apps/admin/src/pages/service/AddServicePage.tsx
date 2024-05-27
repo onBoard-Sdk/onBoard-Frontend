@@ -16,7 +16,7 @@ export const AddServicePage = () => {
   const queryClient = useQueryClient();
   const serviceList = queryClient.getQueryData<GetServicesType>(["serviceList"]);
   const serviceIdx = +locate.pathname.split("/")[2];
-  const serviceInfo = serviceList?.data.services[serviceIdx];
+  const serviceInfo = serviceList?.data.services.find((element) => element.serviceId === +serviceIdx);
   const hasService = !Number.isNaN(serviceIdx);
 
   const [serviceImg, setServiceImg] = useState(hasService ? serviceInfo?.logoImageUrl : emptyImage);
