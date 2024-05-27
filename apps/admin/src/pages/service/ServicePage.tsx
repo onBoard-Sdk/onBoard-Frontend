@@ -21,9 +21,9 @@ export const ServicePage = () => {
       </StyledTitleWrapper>
       <StyledCountText>{data?.data.services.length}개</StyledCountText>
       <StyledServiceCardWrapper>
-        {data?.data.services.map((service, idx) => {
+        {data?.data.services.map((service) => {
           return (
-            <Link key={service.serviceUrl} to={`${idx}`}>
+            <Link key={service.serviceUrl} to={`${service.serviceId}`}>
               <ServiceCard {...service} />
             </Link>
           );
