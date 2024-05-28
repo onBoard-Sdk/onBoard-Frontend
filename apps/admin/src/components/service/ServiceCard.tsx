@@ -6,7 +6,7 @@ export const ServiceCard = ({ name, logoImageUrl, serviceUrl }: ServiceType) => 
     <StyledWrapper>
       <StyledImage src={logoImageUrl} alt="logo image" />
       <StyledServiceTitle>{name}</StyledServiceTitle>
-      <StyledURL>{serviceUrl}</StyledURL>
+      <StyledURL>{serviceUrl.replace(/https?:\/\//g,'')}</StyledURL>
     </StyledWrapper>
   );
 };
