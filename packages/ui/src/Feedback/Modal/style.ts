@@ -1,9 +1,7 @@
 import styled from '@emotion/styled';
 
-export const StyledWrapper = styled.div<{
-    is: boolean;
-}>`
-    display: ${({ is }) => (is ? 'flex' : 'none')};
+export const StyledWrapper = styled.div`
+    display: flex;
     width: 324px;
     height: 412px;
     padding: 16px;

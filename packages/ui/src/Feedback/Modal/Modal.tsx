@@ -29,10 +29,9 @@ export const Modal = function ({ serviceId, path }: ModalProps) {
     });
     const { title, content } = form;
 
-    const [is, setIs] = useState(false);
     const [step, setStep] = useState(true);
     return (
-        <_.StyledWrapper is={is}>
+        <_.StyledWrapper>
             {step ? (
                 <>
                     <_.StyledList>
