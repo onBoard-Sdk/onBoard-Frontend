@@ -5,9 +5,13 @@ import { plusImage } from "@/assets";
 import { ServiceCard } from "@/components/service";
 import PageTeplate from "@/components/common/pageTemplate";
 import { useGetServices } from "@/apis/services";
+import useTitle from "@/hooks/useTitle";
 
 export const ServicePage = () => {
   const { data } = useGetServices();
+
+  useTitle('등록한 서비스')
+
   return (
     <PageTeplate>
       <StyledTitleWrapper>
