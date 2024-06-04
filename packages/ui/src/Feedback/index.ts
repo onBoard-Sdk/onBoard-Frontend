@@ -1,2 +1,2 @@
-export { Button } from "./Button";
-export type { ButtonProps } from './type';
+export { Modal } from "./Modal";
+export type { ModalProps } from './type';
