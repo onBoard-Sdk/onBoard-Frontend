@@ -9,6 +9,7 @@ export const StyledWrapper = styled.div`
     border-radius: 999px;
     border: 1px solid var(--Black-10, rgba(34, 34, 34, 0.1));
     cursor: pointer;
+    background: #ffffff;
 `
 
 export const StyledText = styled.div`
