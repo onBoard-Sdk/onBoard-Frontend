@@ -8,7 +8,7 @@ export const StyledWrapper = styled.div`
   justify-content: center;
   gap: 8px;
   border-radius: 12px;
-  background: linear-gradient(180deg, #fff 0%, #e7e7e7 100%);
+  background-color: white;
 `;
 
 export const StyledEmoji = styled.div`
@@ -43,6 +43,8 @@ export const StyledButtonWrapper = styled.div`
 `;
 
 export const StyledButton = styled.button`
+  border: none;
+  outline: none;
   padding: 8px 12px;
   display: flex;
   justify-content: center;
@@ -52,4 +54,5 @@ export const StyledButton = styled.button`
   border-radius: 12px;
   background: #222222;
   cursor: pointer;
+  white-space: nowrap;
 `;
