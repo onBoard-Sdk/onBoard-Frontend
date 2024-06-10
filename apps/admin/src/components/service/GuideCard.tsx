@@ -1,18 +1,28 @@
 import { editImage, pencilSquare } from "@/assets";
 import styled from "@emotion/styled";
 import { Button } from "@onboard/ui";
+import { Link } from "react-router-dom";
 
-export const GuideCard = () => {
+interface GuideCardType {
+  title: string;
+  path: string;
+  guideId: number;
+  serviceId: number;
+}
+
+export const GuideCard = ({ title, path, guideId, serviceId }: GuideCardType) => {
   return (
     <StyledWrapper>
       <StyledDIV>
-        <StyledTitle>뭐 하는 법</StyledTitle>
-        <StyledURL>/url/suburl</StyledURL>
+        <StyledTitle>{title}</StyledTitle>
+        <StyledURL>{path}</StyledURL>
       </StyledDIV>
-      <Button buttonColor="gray">
-        <img src={pencilSquare} alt="editImage" />
-        수정
-      </Button>
+      <Link to={`/editor/${serviceId}/${guideId}`}>
+        <Button buttonColor="gray">
+          <img src={pencilSquare} alt="editImage" />
+          수정
+        </Button>
+      </Link>
     </StyledWrapper>
   );
 };

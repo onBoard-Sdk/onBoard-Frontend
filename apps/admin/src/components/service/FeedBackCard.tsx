@@ -1,13 +1,19 @@
 import styled from "@emotion/styled";
 
-export const FeedBackCard = () => {
+interface FeedbackCardProps {
+  title: string;
+  path: string;
+  content: string;
+}
+
+export const FeedBackCard = ({ title, path, content }: FeedbackCardProps) => {
   return (
     <StyledWrapper>
       <StyledHeader>
-        <StyledTitle>제목입니다</StyledTitle>
-        <StyledURL>/sample/url</StyledURL>
+        <StyledTitle>{title}</StyledTitle>
+        <StyledURL>{path}</StyledURL>
       </StyledHeader>
-      <StyledInfo>이거추가할래 저것도살래 쿠폰도줄게 팝업좀 그만 띄워 주세요 </StyledInfo>
+      <StyledInfo>{content}</StyledInfo>
     </StyledWrapper>
   );
 };

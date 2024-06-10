@@ -10,11 +10,11 @@ export type GuideResponseType = {
   guideId: number;
 };
 
-export function useGuide(guideId: number){
+export function useSaveGuide(guideId: number) {
   return useMutation({
-    mutationFn: (body:GuideRequestType) => instance.patch(`/guides/${guideId}`, body),
+    mutationFn: (body: GuideRequestType) => instance.patch(`/guides/${guideId}`, body),
     onSuccess: (data) => {
       console.log(data);
-    }
+    },
   });
-};
+}

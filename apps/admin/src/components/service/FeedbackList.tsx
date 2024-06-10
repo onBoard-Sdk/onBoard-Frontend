@@ -1,10 +1,18 @@
 import styled from "@emotion/styled";
 import { FeedBackCard } from "./FeedBackCard";
+import { useGetFeedbacks } from "@/apis/feedbacks";
+import { useLocation } from "react-router-dom";
 
 export const FeedbackList = () => {
+  const locate = useLocation();
+  const { data: feedbackList } = useGetFeedbacks(+locate.pathname.split("/")[2]);
+
   return (
     <StyledListWrapper>
-      <FeedBackCard />
+      {feedbackList?.data.feedbacks.map((feedback) => {
+        const { title, content, path } = feedback;
+        return <FeedBackCard title={title} content={content} path={path} />;
+      })}
     </StyledListWrapper>
   );
 };

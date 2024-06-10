@@ -4,6 +4,7 @@ import LoginPage from "@/pages/login";
 import SignupPage from "@/pages/signup";
 import EditorPage from "@/pages/editor";
 import { ServicePage, AddServicePage, ServiceDetailPage } from "./pages/service";
+import { GuideEditPage } from "@/pages/guide";
 
 export function Router() {
   return (
@@ -12,7 +13,8 @@ export function Router() {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/editor/:guideId" element={<EditorPage />} />
+        <Route path="/editor/:serviceId" element={<EditorPage />} />
+        <Route path="/editor/:serviceId/:guideId" element={<GuideEditPage />} />
         <Route path="/service" element={<ServicePage />} />
         <Route path="/service/new" element={<AddServicePage />} />
         <Route path="/service/:id" element={<ServiceDetailPage />} />
