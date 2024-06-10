@@ -75,7 +75,7 @@ export const AddServicePage = () => {
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <StyledImageWrapper>
           <StyledImage src={serviceImg} alt="serviceImg" />
-          <Button buttonColor="green" onClick={handleImage}>
+          <Button type="button" buttonColor="green" onClick={handleImage}>
             <img src={uploadImage} alt="uploadImage" /> 이미지 업로드
           </Button>
           <StyledInput
@@ -86,7 +86,7 @@ export const AddServicePage = () => {
             {...inputRegister}
             accept="image/*"
           />
-          <Button buttonColor="gray" onClick={onDeleteImage}>
+          <Button type="button" buttonColor="gray" onClick={onDeleteImage}>
             <img src={trashImage} alt="trashImage" /> 삭제
           </Button>
         </StyledImageWrapper>
