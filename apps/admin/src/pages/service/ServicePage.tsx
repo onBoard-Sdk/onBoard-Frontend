@@ -8,6 +8,7 @@ import { useGetServices } from "@/apis/services";
 
 export const ServicePage = () => {
   const { data } = useGetServices();
+
   return (
     <PageTeplate>
       <StyledTitleWrapper>

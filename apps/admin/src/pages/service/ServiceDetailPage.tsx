@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import styled from "@emotion/styled";
 import { Button } from "@onboard/ui";
@@ -7,6 +7,7 @@ import { leftArrow, pencilSquare, plusImage } from "@/assets";
 import { GetServicesType } from "@/apis/services";
 import PageTemplate from "@/components/common/pageTemplate";
 import { FeedbackList, GuildeList } from "@/components/service";
+import { useGetFeedbacks } from "@/apis/feedbacks";
 
 export const ServiceDetailPage = () => {
   const [tabMenu, setTabMenu] = useState(true);
@@ -21,6 +22,9 @@ export const ServiceDetailPage = () => {
   const onClickNavButton = () => {
     setTabMenu((prev) => !prev);
   };
+
+  const { data: feedbackList } = useGetFeedbacks(+locate.pathname.split("/")[2]);
+
   return (
     <PageTemplate style={{ gap: "20px" }}>
       <StyledPageHeader>
@@ -45,12 +49,14 @@ export const ServiceDetailPage = () => {
             가이드
           </Button>
           <Button buttonColor={tabMenu ? "white" : "green"} onClick={onClickNavButton}>
-            사용자 피드백 <StyledCountText>32</StyledCountText>
+            사용자 피드백 <StyledCountText>{feedbackList?.data.feedbacks.length}</StyledCountText>
           </Button>
         </StyledButtonWrapper>
-        <Button buttonColor="green">
-          <img src={plusImage} alt="plusImage" /> 새 가이드
-        </Button>
+        <Link to={`/editor/${serviceIdx}`}>
+          <Button buttonColor="green">
+            <img src={plusImage} alt="plusImage" /> 새 가이드
+          </Button>
+        </Link>
       </StyledNavHeader>
       {tabMenu ? <GuildeList /> : <FeedbackList />}
     </PageTemplate>
