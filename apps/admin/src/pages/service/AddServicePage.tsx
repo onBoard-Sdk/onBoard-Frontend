@@ -8,6 +8,7 @@ import PageTemplate from "@/components/common/pageTemplate";
 import { emptyImage, leftArrow, trashImage, uploadImage } from "@/assets";
 import { useQueryClient } from "@tanstack/react-query";
 import { useDidMountEffect } from "@/hooks/useDidMountEffect";
+import useTitle from "@/hooks/useTitle";
 
 export const AddServicePage = () => {
   const navigate = useNavigate();
@@ -57,6 +58,8 @@ export const AddServicePage = () => {
       typeof selectedImage !== "string" && setServiceImg(URL.createObjectURL(image as File));
     }
   }, [selectedImage]);
+
+  useTitle('새 서비스 연결')
 
   return (
     <PageTemplate style={{ gap: "24px" }}>

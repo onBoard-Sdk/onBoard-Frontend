@@ -8,6 +8,7 @@ import { useSignup } from "@/apis/teams";
 import { airplaneImage, checkImage } from "@/assets";
 import MainSection from "@/components/main";
 import { leftArrow } from "@/assets";
+import useTitle from "@/hooks/useTitle";
 
 interface SignupForm {
   email: string;
@@ -22,6 +23,8 @@ const Signup = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<SignupForm>();
+
+  useTitle('새 계정 만들기')
 
   const [isVerifiedEmail, setIsVerifiedEmail] = useState(true);
 

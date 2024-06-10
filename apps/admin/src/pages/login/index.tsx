@@ -5,6 +5,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useLogin } from "@/apis/auth";
 import { logoImage } from "@/assets";
 import MainSection from "@/components/main";
+import useTitle from "@/hooks/useTitle";
 
 interface LoginForm {
   email: string;
@@ -17,6 +18,8 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginForm>();
+
+  useTitle('로그인')
 
   const { mutate: loginMutate } = useLogin();
 
