@@ -86,7 +86,6 @@ video {
   border: 0;
   font-size: 100%;
   font-family: 'Pretendard', sans-serif;
-  font: inherit;
   box-sizing: border-box;
   vertical-align: baseline;
 }

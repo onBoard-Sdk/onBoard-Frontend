@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import styled from "@emotion/styled";
@@ -8,16 +8,25 @@ import { GetServicesType } from "@/apis/services";
 import PageTemplate from "@/components/common/pageTemplate";
 import { FeedbackList, GuildeList } from "@/components/service";
 import { useGetFeedbacks } from "@/apis/feedbacks";
+import useTitle from "@/hooks/useTitle";
+
 
 export const ServiceDetailPage = () => {
   const [tabMenu, setTabMenu] = useState(true);
   const navigate = useNavigate();
   const locate = useLocation();
+  const title = useTitle('불러오는 중')
 
   const queryClient = useQueryClient();
   const serviceList = queryClient.getQueryData<GetServicesType>(["serviceList"]);
   const serviceIdx = +locate.pathname.split("/")[2];
   const serviceInfo = serviceList?.data.services.find((element) => element.serviceId === +serviceIdx);
+
+  useEffect(() => {
+    if (serviceInfo) {
+      title(serviceInfo.name);
+    }
+  }, [serviceInfo]);
 
   const onClickNavButton = () => {
     setTabMenu((prev) => !prev);

@@ -5,9 +5,12 @@ import { plusImage } from "@/assets";
 import { ServiceCard } from "@/components/service";
 import PageTeplate from "@/components/common/pageTemplate";
 import { useGetServices } from "@/apis/services";
+import useTitle from "@/hooks/useTitle";
 
 export const ServicePage = () => {
   const { data } = useGetServices();
+
+  useTitle('등록한 서비스')
 
   return (
     <PageTeplate>
@@ -54,8 +57,8 @@ const StyledCountText = styled.span`
 `;
 
 const StyledServiceCardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   width: 100%;
 `;
