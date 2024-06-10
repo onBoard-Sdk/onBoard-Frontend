@@ -57,8 +57,8 @@ const StyledCountText = styled.span`
 `;
 
 const StyledServiceCardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   width: 100%;
 `;

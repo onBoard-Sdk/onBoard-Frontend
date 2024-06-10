@@ -47,6 +47,7 @@ const StyledImage = styled.div<{ image?: string }>`
   ${({ image }) => (image ? `background-image: url(${image});` : "background-color: white;")}
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
   border: 1px solid rgba(22, 22, 22, 0.1);
   border-radius: 16px;
 `;

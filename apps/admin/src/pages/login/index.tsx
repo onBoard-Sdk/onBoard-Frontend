@@ -79,6 +79,7 @@ export default Login;
 const StyledContainer = styled.main`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  box-sizing: inherit;
   gap: 24px;
   padding: 24px;
   width: 100%;

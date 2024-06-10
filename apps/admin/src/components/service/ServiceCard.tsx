@@ -6,7 +6,7 @@ export const ServiceCard = ({ name, logoImageUrl, serviceUrl }: ServiceType) => 
     <StyledWrapper>
       <StyledImage src={logoImageUrl} alt="logo image" />
       <StyledServiceTitle>{name}</StyledServiceTitle>
-      <StyledURL>{serviceUrl}</StyledURL>
+      <StyledURL>{serviceUrl.replace(/https?:\/\//g,'')}</StyledURL>
     </StyledWrapper>
   );
 };
@@ -18,6 +18,7 @@ const StyledWrapper = styled.div`
   border: 1px solid #e9e9e9;
   border-radius: 4px;
   padding: 16px;
+  height: 100%;
 `;
 
 const StyledImage = styled.img`
@@ -40,8 +41,5 @@ const StyledURL = styled.div`
   color: #909090;
   font-size: 16px;
   line-height: 24px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   word-break: break-all;
 `;
