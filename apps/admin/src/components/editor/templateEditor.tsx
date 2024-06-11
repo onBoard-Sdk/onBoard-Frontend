@@ -85,7 +85,7 @@ export default function TemplateEditor({ guideInfo }: { guideInfo: GuideInfoType
           >
             <Tooltip
               title={flow[selectedPage - 1]?.guideElementTitle}
-              explanation={flow[selectedPage - 1]?.description}
+              description={flow[selectedPage - 1]?.description}
               emoji={flow[selectedPage - 1]?.emoji}
             />
           </animated.div>
