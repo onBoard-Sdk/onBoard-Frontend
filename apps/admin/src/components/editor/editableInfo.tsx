@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input, Button } from "@onboard/ui";
 import { pencilSquare } from "@/assets";
 import styled from "@emotion/styled";
@@ -15,12 +15,26 @@ export default function EditableInfo() {
 
   // const { data } = useGetGuideFlow(guideId);
 
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (IsEditing) {
+        handleSubmit(onSubmit);
+      }
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, [IsEditing, handleSubmit]);
+
   if (!IsEditing) {
     return (
       <HorizonalContainer>
         <StyledText>{watch("guideTitle")}</StyledText>
         <StyledTextSubtle>{watch("path")}</StyledTextSubtle>
-        <Button buttonColor="gray" onClick={() => setIsEditing(true)}>
+        <Button buttonColor="gray" onClick={handleEditClick}>
           <img src={pencilSquare} alt="편집 아이콘" />
           편집
         </Button>
