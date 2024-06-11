@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 import { logoImage } from "@/assets";
 import { Button } from "@onboard/ui";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function Header() {
   const locate = useLocation();
+  const navigate = useNavigate();
   if (locate.pathname === "/" || locate.pathname === "/signup") {
     return null;
   }
@@ -13,7 +14,9 @@ export default function Header() {
       <Link to="/service">
         <StlyedLogo src={logoImage} alt="Logo" />
       </Link>
-      <Button buttonColor="gray">로그아웃</Button>
+      <Button buttonColor="gray" onClick={() => navigate("/")}>
+        로그아웃
+      </Button>
     </StyledWrapper>
   );
 }
