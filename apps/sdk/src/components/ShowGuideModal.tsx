@@ -1,7 +1,7 @@
-import { useGetGuideFlow } from "@/api/guides";
+import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { Tooltip } from "@onboard/ui";
-import React, { useEffect, useState } from "react";
+import { useGetGuideFlow } from "@/api/guides";
 
 type ShowGuideModalType = {
   guideId: number;

@@ -1,9 +1,9 @@
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
+import styled from "@emotion/styled";
 import EditableInfo from "@/components/editor/editableInfo";
 import TemplateEditor from "@/components/editor/templateEditor";
-import styled from "@emotion/styled";
-import { Link, useLocation } from "react-router-dom";
-import { useGetGuideFlow } from "@/apis/guides";
-import { useState } from "react";
+import { GuideInfoType } from "../editor";
 
 export const GuideEditPage = () => {
   const locate = useLocation();

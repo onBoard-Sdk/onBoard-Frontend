@@ -1,8 +1,7 @@
+import { useState } from "react";
+import styled from "@emotion/styled";
 import EditableInfo from "@/components/editor/editableInfo";
 import TemplateEditor from "@/components/editor/templateEditor";
-import styled from "@emotion/styled";
-import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
 
 export interface GuideInfoType {
   guideTitle: string;
@@ -10,7 +9,6 @@ export interface GuideInfoType {
 }
 
 export default function EditorPage() {
-  const locate = useLocation();
   const [guideInfo, setGuideInfo] = useState<GuideInfoType>({ guideTitle: "가이드 이름", path: "/" });
 
   return (
