@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import React from "react";
 import { Input, Button } from "@onboard/ui";
 import { pencilSquare } from "@/assets";
 import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
+import { useSaveGuide } from "../../apis/guides/useSaveGuide";
 import { useParams } from "react-router-dom";
 import { useGetGuideFlow } from "@/apis/guides";
 import { GuideInfoType } from "@/pages/editor";
@@ -25,6 +26,25 @@ export default function EditableInfo({ setGuideInfo }: EditableInfoProps) {
   } = useForm({
     values: { guideTitle: data?.data.guide.guideTitle || "가이드 이름", path: data?.data.guide.path || "/" },
   });
+  
+  const saveGuide = useSaveGuide(guideId);
+
+  const saveGuideData = useCallback(() => {
+    saveGuide.mutate({
+      guideTitle: watch("guideTitle"),
+      path: watch("path"),
+    });
+  }, [saveGuide, watch]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (IsEditing) {
+        saveGuideData();
+      }
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, [IsEditing, saveGuideData]);
 
   const onSubmit = (data) => {
     setGuideInfo({ guideTitle: data.guideTitle, path: data.path });
@@ -36,7 +56,10 @@ export default function EditableInfo({ setGuideInfo }: EditableInfoProps) {
       <HorizonalContainer>
         <StyledText>{watch("guideTitle")}</StyledText>
         <StyledTextSubtle>{watch("path")}</StyledTextSubtle>
-        <Button buttonColor="gray" onClick={() => setIsEditing(true)}>
+        <Button buttonColor="gray" onClick={() => {
+          setIsEditing(true);
+          saveGuideData();
+        }}>
           <img src={pencilSquare} alt="편집 아이콘" />
           편집
         </Button>
