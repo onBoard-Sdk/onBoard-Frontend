@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { instance } from "../axios";
 import { toast } from "react-toastify";
 
@@ -12,10 +12,12 @@ export type GuideResponseType = {
 };
 
 export function useSaveGuide(guideId: number) {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (body: GuideRequestType) => instance.patch(`/guides/${guideId}`, body),
     onSuccess: () => {
       toast.success("가이드 수정이 완료되었습니다.");
+      queryClient.invalidateQueries(["guideFlow", guideId]);
     },
   });
 }

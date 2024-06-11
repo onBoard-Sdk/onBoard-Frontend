@@ -186,7 +186,22 @@ const DefaultSidebar = ({
   const locate = useLocation();
   const { guideId } = useParams();
 
-  const { mutateAsync: guideMutate } = useSaveGuide(Number(guideId));
+  const { mutate: guideMutate } = useSaveGuide(Number(guideId));
+
+  useEffect(() => {
+    if (data.length > 0) {
+      const interval = setInterval(() => {
+        guideMutate({
+          serviceId: +locate.pathname.split("/")[2],
+          guideTitle: guideInfo.guideTitle,
+          path: guideInfo.path,
+          guideElements: data,
+        });
+      }, 1000 * 30);
+
+      return () => clearInterval(interval);
+    }
+  }, [data]);
 
   return (
     <FlowContainer>

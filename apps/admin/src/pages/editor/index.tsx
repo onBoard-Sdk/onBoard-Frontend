@@ -1,7 +1,9 @@
-import { useState } from "react";
-import styled from "@emotion/styled";
 import EditableInfo from "@/components/editor/editableInfo";
 import TemplateEditor from "@/components/editor/templateEditor";
+import styled from "@emotion/styled";
+import { Link, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useGetGuideFlow } from "@/apis/guides";
 
 export interface GuideInfoType {
   guideTitle: string;
@@ -9,7 +11,18 @@ export interface GuideInfoType {
 }
 
 export default function EditorPage() {
-  const [guideInfo, setGuideInfo] = useState<GuideInfoType>({ guideTitle: "가이드 이름", path: "/" });
+  const { guideId } = useParams();
+  const { data } = useGetGuideFlow(guideId);
+  const [guideInfo, setGuideInfo] = useState<GuideInfoType>({
+    guideTitle: "가이드 이름",
+    path: "/",
+  });
+
+  useEffect(() => {
+    if (data) {
+      setGuideInfo({ guideTitle: data?.data.guide.guideTitle, path: data?.data.guide.path });
+    }
+  }, [data?.data.guide]);
 
   return (
     <OuterContainer>
