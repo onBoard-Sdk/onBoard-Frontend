@@ -3,17 +3,19 @@ import TemplateEditor from "@/components/editor/templateEditor";
 import styled from "@emotion/styled";
 import { Link, useLocation } from "react-router-dom";
 import { useGetGuideFlow } from "@/apis/guides";
+import { useState } from "react";
 
 export const GuideEditPage = () => {
   const locate = useLocation();
   const guideId = +locate.pathname.split("/")[3];
   console.log(guideId);
+  const [guideInfo, setGuideInfo] = useState<GuideInfoType>({ guideTitle: "가이드 이름", path: "/" });
 
   return (
     <OuterContainer>
       <RootContainer>
-        <EditableInfo />
-        <TemplateEditor />
+        <EditableInfo setGuideInfo={setGuideInfo} />
+        <TemplateEditor guideInfo={guideInfo} />
       </RootContainer>
     </OuterContainer>
   );

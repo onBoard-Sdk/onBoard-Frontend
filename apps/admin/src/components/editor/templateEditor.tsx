@@ -7,10 +7,10 @@ import { useForm } from "react-hook-form";
 import { useDrag } from "react-use-gesture";
 import { animated } from "react-spring";
 import { useLocation, useParams } from "react-router-dom";
-import { useQueryClient } from "@tanstack/react-query";
 import { useCreateGuide, useGetGuideFlow } from "@/apis/guides";
 import { useSaveGuide } from "@/apis/guides/useSaveGuide";
-import { GetServicesType } from "@/apis/services";
+import { GetServicesType, useGetServices } from "@/apis/services";
+import { GuideInfoType } from "@/pages/editor";
 
 interface FlowType {
   emoji: string;
@@ -22,7 +22,7 @@ interface FlowType {
   length: string;
 }
 
-export default function TemplateEditor() {
+export default function TemplateEditor({ guideInfo }: { guideInfo: GuideInfoType }) {
   const [selectedPage, setSelectedPage] = useState<number>(0);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [flow, setFlow] = useState<FlowType[]>([]);
@@ -39,9 +39,8 @@ export default function TemplateEditor() {
   });
 
   const locate = useLocation();
-  const queryClient = useQueryClient();
 
-  const serviceList = queryClient.getQueryData<GetServicesType>(["serviceList"]);
+  const { data: serviceList } = useGetServices();
   const serviceIdx = +locate.pathname.split("/")[2];
   const serviceInfo = serviceList?.data.services.find((element) => element.serviceId === serviceIdx);
 
@@ -69,6 +68,7 @@ export default function TemplateEditor() {
           setSelectedPage={setSelectedPage}
           setIsEditing={setIsEditing}
           setFlow={setFlow}
+          guideInfo={guideInfo}
           data={flow}
         />
       )}
@@ -171,9 +171,17 @@ interface DefaultSidebarPropsType {
   setIsEditing: Dispatch<React.SetStateAction<boolean>>;
   data: FlowType[];
   setFlow: Dispatch<React.SetStateAction<FlowType>>;
+  guideInfo: GuideInfoType;
 }
 
-const DefaultSidebar = ({ selectedPage, setSelectedPage, setIsEditing, setFlow, data }: DefaultSidebarPropsType) => {
+const DefaultSidebar = ({
+  selectedPage,
+  setSelectedPage,
+  setIsEditing,
+  setFlow,
+  data,
+  guideInfo,
+}: DefaultSidebarPropsType) => {
   const { mutate } = useCreateGuide();
   const locate = useLocation();
   const { guideId } = useParams();
@@ -206,19 +214,19 @@ const DefaultSidebar = ({ selectedPage, setSelectedPage, setIsEditing, setFlow, 
           !!guideId
             ? guideMutate({
                 serviceId: +locate.pathname.split("/")[2],
-                guideTitle: "가이드수정본",
-                path: "/",
+                guideTitle: guideInfo.guideTitle,
+                path: guideInfo.path,
                 guideElements: data,
               })
             : mutate({
                 serviceId: +locate.pathname.split("/")[2],
-                guideTitle: "가이드1",
-                path: "/",
+                guideTitle: guideInfo.guideTitle,
+                path: guideInfo.path,
                 guideElements: data,
               });
         }}
       >
-        {!!guideId ? "편집" : "생성"}
+        {!!guideId ? "저장" : "생성"}
       </Button>
       <ButtonContainer>
         <Button buttonColor="green" onClick={() => setIsEditing(true)}>
