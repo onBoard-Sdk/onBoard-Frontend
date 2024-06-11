@@ -6,11 +6,11 @@ import { useLocation } from "react-router-dom";
 export const GuildeList = () => {
   const locate = useLocation();
   const serviceId = +locate.pathname.split("/")[2];
-  const { data: guideList } = useGetGuideList(serviceId);
+  const { data: guideList } = useGetGuideList();
 
   return (
     <StyledListWrapper>
-      {guideList?.data.guides.length > 0 ? (
+      {guideList?.data.guides.length! > 0 ? (
         guideList?.data.guides.map((guide) => {
           return (
             <GuideCard

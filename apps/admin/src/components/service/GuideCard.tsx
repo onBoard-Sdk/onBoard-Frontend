@@ -1,4 +1,4 @@
-import { editImage, pencilSquare } from "@/assets";
+import { pencilSquare } from "@/assets";
 import styled from "@emotion/styled";
 import { Button } from "@onboard/ui";
 import { Link } from "react-router-dom";

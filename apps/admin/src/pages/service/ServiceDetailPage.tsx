@@ -1,23 +1,20 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
-import { useQueryClient } from "@tanstack/react-query";
 import styled from "@emotion/styled";
 import { Button } from "@onboard/ui";
 import { leftArrow, pencilSquare, plusImage } from "@/assets";
-import { GetServicesType, useGetServices } from "@/apis/services";
+import { useGetServices } from "@/apis/services";
+import { useGetFeedbacks } from "@/apis/feedbacks";
 import PageTemplate from "@/components/common/pageTemplate";
 import { FeedbackList, GuildeList } from "@/components/service";
-import { useGetFeedbacks } from "@/apis/feedbacks";
 import useTitle from "@/hooks/useTitle";
-
 
 export const ServiceDetailPage = () => {
   const [tabMenu, setTabMenu] = useState(true);
   const navigate = useNavigate();
   const locate = useLocation();
-  const title = useTitle('불러오는 중')
+  const title = useTitle("불러오는 중");
 
-  const queryClient = useQueryClient();
   const { data: serviceList } = useGetServices();
   const serviceIdx = +locate.pathname.split("/")[2];
   const serviceInfo = serviceList?.data.services.find((element) => element.serviceId === +serviceIdx);
@@ -32,7 +29,7 @@ export const ServiceDetailPage = () => {
     setTabMenu((prev) => !prev);
   };
 
-  const { data: feedbackList } = useGetFeedbacks(+locate.pathname.split("/")[2]);
+  const { data: feedbackList } = useGetFeedbacks(locate.pathname.split("/")[2]);
 
   return (
     <PageTemplate style={{ gap: "20px" }}>

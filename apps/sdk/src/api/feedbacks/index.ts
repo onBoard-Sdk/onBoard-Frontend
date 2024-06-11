@@ -1,3 +1,3 @@
 export const feedbacksRouter = "/feedbacks";
 
-export * from "./useGetFeedbacks";
+export * from "./useWriteFeedback";

@@ -2049,6 +2049,7 @@ __metadata:
     "@emotion/css": "npm:^11.11.2"
     "@emotion/react": "npm:^11.11.4"
     "@emotion/styled": "npm:^11.11.5"
+    typescript: "npm:4.9.5"
   languageName: unknown
   linkType: soft
 
@@ -8047,7 +8048,7 @@ __metadata:
   dependencies:
     "@types/node": "npm:^20.12.7"
     prettier: "npm:^3.2.5"
-    typescript: "npm:^4.9.5"
+    typescript: "npm:4.9.5"
   languageName: unknown
   linkType: soft
 
@@ -9225,6 +9226,7 @@ __metadata:
     "@emotion/css": "npm:^11.11.2"
     "@emotion/react": "npm:^11.11.4"
     "@emotion/styled": "npm:^11.11.5"
+    "@onboard/ui": "workspace:^"
     "@tanstack/react-query": "npm:^5.32.0"
     "@types/react": "npm:^18.2.66"
     "@types/react-dom": "npm:^18.2.22"
@@ -9581,6 +9583,7 @@ __metadata:
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     storybook: "npm:^8.0.9"
+    typescript: "npm:4.9.5"
     vite: "npm:^5.2.10"
   languageName: unknown
   linkType: soft
@@ -9995,7 +9998,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:4.9.5, typescript@npm:^4.9.5":
+"typescript@npm:4.9.5":
   version: 4.9.5
   resolution: "typescript@npm:4.9.5"
   bin:
@@ -10005,7 +10008,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A4.9.5#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^4.9.5#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A4.9.5#optional!builtin<compat/typescript>":
   version: 4.9.5
   resolution: "typescript@patch:typescript@npm%3A4.9.5#optional!builtin<compat/typescript>::version=4.9.5&hash=289587"
   bin:

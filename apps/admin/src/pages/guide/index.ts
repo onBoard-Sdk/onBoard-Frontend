@@ -1,1 +1,1 @@
-export * from "./GuideEditPage.tsx";
+export * from "./GuideEditPage";

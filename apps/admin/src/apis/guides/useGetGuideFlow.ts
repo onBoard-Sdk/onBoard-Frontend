@@ -1,12 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { guidesRouter } from ".";
+import { guidesRouter, GuideType } from ".";
 import { instance } from "../axios";
-
-export type GuideType = {
-  guideId: number;
-  guideTitle: string;
-  path: string;
-};
 
 export type GuideElement = {
   sequence: string;
