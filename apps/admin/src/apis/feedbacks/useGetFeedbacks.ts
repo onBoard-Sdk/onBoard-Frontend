@@ -9,7 +9,9 @@ export type FeedbackType = {
 };
 
 export type FeedbackListType = {
-  feedbacks: FeedbackType[];
+  data: {
+    feedbacks: FeedbackType[];
+  };
 };
 
 export const useGetFeedbacks = (serviceId: string) => {

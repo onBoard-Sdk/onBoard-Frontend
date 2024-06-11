@@ -4,19 +4,20 @@ import { TooltipProps } from "./type";
 export const Tooltip = function ({
   emoji,
   title,
-  explanation,
-  image = "",
+  description,
+  imageUrl,
   count,
   onPrevStep,
   onNextStep,
+  ...rest
 }: TooltipProps) {
   return (
-    <_.StyledWrapper>
+    <_.StyledWrapper {...rest}>
       <_.StyledEmoji>{emoji}</_.StyledEmoji>
       <_.StyledText>{title}</_.StyledText>
-      <_.StyledExplanation>{explanation}</_.StyledExplanation>
+      <_.StyledExplanation>{description}</_.StyledExplanation>
 
-      {image && <_.StyledImage src={image} />}
+      {imageUrl && <_.StyledImage src={imageUrl} />}
 
       <_.StyledButtonWrapper>
         <_.StyledButton onClick={onPrevStep}>이전</_.StyledButton>

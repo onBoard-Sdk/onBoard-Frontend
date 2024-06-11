@@ -1,15 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
 import { guidesRouter } from ".";
 import { instance } from "../axios";
+import { useQuery } from "@tanstack/react-query";
+import { GuidePageType } from "./useGetGuideList";
 
-export type GuideType = {
-  guideId: number;
-  guideTitle: string;
-  path: string;
-};
-
-export type GuideElement = {
-  sequence: string;
+export type GuideFlowType = {
+  sequence: number;
   emoji: string;
   guideElementTitle: string;
   description: string;
@@ -21,18 +16,17 @@ export type GuideElement = {
 
 export type GetGuideFlowType = {
   data: {
-    guide: GuideType;
-    guideElements: GuideElement[];
+    guide: GuidePageType;
+    guideElements: GuideFlowType[];
   };
 };
 
-export const useGetGuideFlow = (guideId: string) => {
+export const useGetGuideFlow = (guideId: number) => {
   return useQuery({
-    queryKey: ["guideFlow", guideId],
+    queryKey: ["guidesFlow"],
     queryFn: async () => {
       const { data } = await instance.get<GetGuideFlowType>(`${guidesRouter}/${guideId}/flows`);
       return data;
     },
-    enabled: !!guideId,
   });
 };

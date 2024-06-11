@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 
 export const FeedbackList = () => {
   const locate = useLocation();
-  const { data: feedbackList } = useGetFeedbacks(+locate.pathname.split("/")[2]);
+  const { data: feedbackList } = useGetFeedbacks(locate.pathname.split("/")[2]);
 
   return (
     <StyledListWrapper>

@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import React from "react";
 import { Input, Button } from "@onboard/ui";
 import { pencilSquare } from "@/assets";
 import styled from "@emotion/styled";
@@ -16,7 +15,7 @@ interface EditableInfoProps {
 export default function EditableInfo({ setGuideInfo }: EditableInfoProps) {
   const [IsEditing, setIsEditing] = useState<boolean>(false);
   const { guideId } = useParams();
-  const { data } = useGetGuideFlow(guideId);
+  const { data } = useGetGuideFlow(guideId!);
   const {
     register,
     handleSubmit,
@@ -27,7 +26,7 @@ export default function EditableInfo({ setGuideInfo }: EditableInfoProps) {
     values: { guideTitle: data?.data.guide.guideTitle || "가이드 이름", path: data?.data.guide.path || "/" },
   });
   
-  const saveGuide = useSaveGuide(guideId);
+  const saveGuide = useSaveGuide(+guideId!);
 
   const saveGuideData = useCallback(() => {
     saveGuide.mutate({
@@ -46,7 +45,7 @@ export default function EditableInfo({ setGuideInfo }: EditableInfoProps) {
     return () => clearInterval(interval);
   }, [IsEditing, saveGuideData]);
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: GuideInfoType) => {
     setGuideInfo({ guideTitle: data.guideTitle, path: data.path });
     setIsEditing(false);
   };
@@ -95,8 +94,8 @@ export default function EditableInfo({ setGuideInfo }: EditableInfoProps) {
             buttonColor="gray"
             onClick={() => {
               setIsEditing(false);
-              setValue("guideTitle", data?.data.guide.guideTitle);
-              setValue("path", data?.data.guide.path);
+              setValue("guideTitle", data?.data.guide.guideTitle!);
+              setValue("path", data?.data.guide.path!);
             }}
           >
             취소
