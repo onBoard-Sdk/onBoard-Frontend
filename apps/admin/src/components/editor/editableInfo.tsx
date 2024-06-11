@@ -1,23 +1,31 @@
 import { useState, useEffect, useCallback } from "react";
+import React from "react";
 import { Input, Button } from "@onboard/ui";
 import { pencilSquare } from "@/assets";
 import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
 import { useSaveGuide } from "../../apis/guides/useSaveGuide";
+import { useParams } from "react-router-dom";
+import { useGetGuideFlow } from "@/apis/guides";
+import { GuideInfoType } from "@/pages/editor";
 
-export type editableIndoProps = {
-  guideId: number;
-};
+interface EditableInfoProps {
+  setGuideInfo: React.Dispatch<React.SetStateAction<GuideInfoType>>;
+}
 
-export default function EditableInfo({ guideId }: editableIndoProps) {
+export default function EditableInfo({ setGuideInfo }: EditableInfoProps) {
   const [IsEditing, setIsEditing] = useState<boolean>(false);
+  const { guideId } = useParams();
+  const { data } = useGetGuideFlow(guideId);
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
     setValue,
-  } = useForm({ values: { guideTitle: "가이드1", path: "/" } });
+  } = useForm({
+    values: { guideTitle: data?.data.guide.guideTitle || "가이드 이름", path: data?.data.guide.path || "/" },
+  });
   
   const saveGuide = useSaveGuide(guideId);
 
@@ -38,7 +46,10 @@ export default function EditableInfo({ guideId }: editableIndoProps) {
     return () => clearInterval(interval);
   }, [IsEditing, saveGuideData]);
 
-  // const { data } = useGetGuideFlow(guideId);
+  const onSubmit = (data) => {
+    setGuideInfo({ guideTitle: data.guideTitle, path: data.path });
+    setIsEditing(false);
+  };
 
   if (!IsEditing) {
     return (
@@ -70,7 +81,7 @@ export default function EditableInfo({ guideId }: editableIndoProps) {
             helpMessage={!errors.path?.message ? "가이드를 표시할 주소입니다" : errors.path?.message}
             {...register("path", {
               pattern: {
-                value: /\/[0-9A-Za-z.\-]+/g,
+                value: /^\/[0-9A-Za-z.\-]*$/g,
                 message: "path가 올바르지 않습니다",
               },
             })}
@@ -79,10 +90,18 @@ export default function EditableInfo({ guideId }: editableIndoProps) {
           <Button buttonColor="green" type="submit">
             저장
           </Button>
+          <Button
+            type="reset"
+            buttonColor="gray"
+            onClick={() => {
+              setIsEditing(false);
+              setValue("guideTitle", data?.data.guide.guideTitle);
+              setValue("path", data?.data.guide.path);
+            }}
+          >
+            취소
+          </Button>
         </StyledForm>
-        <Button buttonColor="gray" onClick={() => setIsEditing(false)}>
-          취소
-        </Button>
       </HorizonalContainer>
     );
   }

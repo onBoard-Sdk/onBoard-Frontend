@@ -4,7 +4,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import styled from "@emotion/styled";
 import { Button } from "@onboard/ui";
 import { leftArrow, pencilSquare, plusImage } from "@/assets";
-import { GetServicesType } from "@/apis/services";
+import { GetServicesType, useGetServices } from "@/apis/services";
 import PageTemplate from "@/components/common/pageTemplate";
 import { FeedbackList, GuildeList } from "@/components/service";
 import { useGetFeedbacks } from "@/apis/feedbacks";
@@ -18,7 +18,7 @@ export const ServiceDetailPage = () => {
   const title = useTitle('불러오는 중')
 
   const queryClient = useQueryClient();
-  const serviceList = queryClient.getQueryData<GetServicesType>(["serviceList"]);
+  const { data: serviceList } = useGetServices();
   const serviceIdx = +locate.pathname.split("/")[2];
   const serviceInfo = serviceList?.data.services.find((element) => element.serviceId === +serviceIdx);
 
