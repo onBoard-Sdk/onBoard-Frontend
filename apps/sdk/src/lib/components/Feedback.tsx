@@ -1,4 +1,4 @@
-import { useWriteFeedback } from "@/api/feedbacks";
+import { useWriteFeedback } from "@/lib/api/feedbacks";
 import styled from "@emotion/styled";
 import { Button, Input, Textarea } from "@onboard/ui";
 import { useState } from "react";

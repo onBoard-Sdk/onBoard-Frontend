@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { Tooltip } from "@onboard/ui";
-import { useGetGuideFlow } from "@/api/guides";
+import { useGetGuideFlow } from "@/lib/api/guides";
 
 type ShowGuideModalType = {
   guideId: number;

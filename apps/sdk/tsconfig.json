@@ -11,8 +11,11 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "noEmit": false,
     "jsx": "react-jsx",
+    "declaration": true,
+    "outDir": "./dist",
+    "types": ["vite/client"],
 
     /* Linting */
     "strict": true,
@@ -23,6 +26,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"],
+  "include": ["./src/lib"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

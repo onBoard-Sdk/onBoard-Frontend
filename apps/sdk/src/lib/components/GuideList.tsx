@@ -1,4 +1,4 @@
-import { useGetGuideList } from "@/api/guides";
+import { useGetGuideList } from "@/lib/api/guides";
 import styled from "@emotion/styled";
 import { Button } from "@onboard/ui";
 import Airplaine from "../assets/airplane.svg";

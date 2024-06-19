@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import TextBallon from "../assets/TextBallon.svg";
+import TextBallon from "../assets/airplane.svg";
 
 type GuideButtonPropsType = {
   onClick: () => void;

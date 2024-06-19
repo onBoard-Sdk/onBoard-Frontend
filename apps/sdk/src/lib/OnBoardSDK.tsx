@@ -1,16 +1,19 @@
 import { useState } from "react";
 import styled from "@emotion/styled";
-import GuideList from "./components/GuideList";
-import GuideButton from "./components/GuideButton";
-import Feedback from "./components/Feedback";
 import ShowGuideModal from "./components/ShowGuideModal";
+import GuideList from "./components/GuideList";
+import Feedback from "./components/Feedback";
+import GuideButton from "./components/GuideButton";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-function App() {
+const queryClient = new QueryClient();
+
+const OnBoardSdk = () => {
   const [isClicked, setIsClicked] = useState(false);
   const [isFeedback, setIsFeedback] = useState(false);
   const [guideId, setGuideId] = useState(0);
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       {!!guideId && <ShowGuideModal guideId={guideId} setGuideId={setGuideId} />}
       <StyledWrapper>
         {isClicked && !isFeedback && (
@@ -23,12 +26,11 @@ function App() {
         {isFeedback && <Feedback onClick={() => setIsFeedback(false)} />}
         <GuideButton onClick={() => setIsClicked(!isClicked)} disalbed={!!guideId} />
       </StyledWrapper>
-      <iframe src="https://jobis-company.team-return.com/" style={{ width: "100vw", height: "100vh" }}></iframe>
-    </>
+    </QueryClientProvider>
   );
-}
+};
 
-export default App;
+export default OnBoardSdk;
 
 const StyledWrapper = styled.div`
   position: absolute;
